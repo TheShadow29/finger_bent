@@ -1,0 +1,4 @@
+Capture the video from a webcam (can be the webcam of your laptop). It would be basically the the video of the user’s hand (palm) . The task is to identify the fingers whether the fingers are bent or not. Correspondingly print a value on the terminal i,e., an array of size consisting of 0s and 1s where 0 corresponds to a bent finger and 1 corresponds to a straight finger. If you want you can also print the decimal equivalent of this five digit binary number. (0-31).
+
+
+Bonus: A greater credit would be given if the hand can be identified on background which is not contrasting. That is, you can assume that the background is of a contrasting colour. If your program can do it without the constraint a greater credit would be given.
