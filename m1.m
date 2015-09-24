@@ -1,4 +1,4 @@
-I = imread('4_fingers.jpg');
+I = imread('3_fingers.jpg');
 J = rgb2gray(I);
 
 background = imopen(J,strel('disk',15));
@@ -6,8 +6,8 @@ I2 = J + background;
 
 I3 = imadjust(I2);
 
-thresh = multithresh(I,2);
-bw = imquantize(I3,thresh);
+level=70/255
+bw = im2bw(I3,level);
 wb= imcomplement(bw);
 wb=bwareaopen(wb,90000);
 %figure;imshow(bw);

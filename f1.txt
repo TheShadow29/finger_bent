@@ -1,0 +1,16 @@
+To be done:
+===================
+Arka
+>>blob
+
+>>crop
+
+>>contour detection
+
+>>convex hull
+====================
+Karan
+>>convex defects --> bending-->rect
+
+>>hand detection
+==================

@@ -98,11 +98,3 @@ videoSrc = vision.VideoFileReader('vipmen.avi', 'ImageColorSpace', 'Intensity');
 insertButtons(hFig, hAxes, videoSrc);
 playCallback(findobj('tag','PBButton123'),[],videoSrc,hAxes);
 end
-function exitCallback(~,~,videoSrc,hFig)
-
-    % Close the video file
-    release(videoSrc);
-    % Close the figure window
-    close(hFig);
-end
-
