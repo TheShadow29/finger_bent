@@ -6,14 +6,20 @@ I2 = J + background;
 
 I3 = imadjust(I2);
 
-level=70/255
+level=70/255;
+max_area = 50000;
 bw = im2bw(I3,level);
 wb= imcomplement(bw);
-wb=bwareaopen(wb,90000);
+wb=bwareaopen(wb,max_area);
 %figure;imshow(bw);
-
-
-figure;imshow(wb);
 cc=bwconncomp(wb);
 graindata = regionprops(cc);
-graindata.Area;
+area1 = graindata.Area;
+if cc.NumObjects>1
+    max_area=max(area1)-10000;
+    wb=bwareaopen(wb,max_area);
+    cc=bwconncomp(wb);
+    %cc.NumObjects
+end 
+imshow(wb);
+cc.NumObjects
