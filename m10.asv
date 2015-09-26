@@ -106,8 +106,8 @@ while 1
     [m ,n]=size(final);
     ind = 2;
     flag =0;
-    %final2 = final;
-    imshow(final);
+    final2 = final;
+    imshow(final2);
     for idx=1:c1.NumObjects
         gr = false(size(wb));
         gr(c1.PixelIdxList{idx})= true;
@@ -135,46 +135,31 @@ while 1
         line([cx,pts(2,ii)],[cy,pts(1,ii)]);
     end
     
-    if c1.NumObjects==5
-        for ii=1:c1.NumObjects
+    %if c1.NumObjects==5
+        for ii=1:5
             vect(1:2,ii)=[cx - pts(2,ii+1), cy - pts(1,ii+1)];
             len_vec(ii) = sqrt(sum(vect(:,ii).^2));
+        end
+    %end
+    if c1.NumObjects==5
+        for ii=1:c1.NumObjects
             if max_len_vec(ii)<len_vec(ii)
                 max_len_vec(ii)=len_vec(ii);
             end
-        end
-    end
-    if c1.NumObjects==5
-        for ii=1:c1.NumObjects
-            if len_vec(ii)<.66*max_len_vec(ii)
+            if len_vec(ii)<.75*max_len_vec(ii)
                 mt(ii)=0;
             else
                 mt(ii)=1;
-            end
-            
+            end 
         end
     end
-%     if c1.NumObjects==0
-%         mt=zeros(1,5);
-%     end
-  
-    
-   % step(hVideoOut,final);
-    
-    
-    
-    %angles
-%     angles = zeros(1,c1.NumObjects-1);
-%     for ii=1:c1.NumObjects+1
-%         an
-%     end
-    
+
         
 else
     %mt=zeros(1,5);
     %step(hVideoOut,out);
     end
-    step(hVideoOut,wb);
+    %step(hVideoOut,wb);
     mt      
 end
 release(hVideoOut);

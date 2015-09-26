@@ -146,7 +146,7 @@ while 1
             if max_len_vec(ii)<len_vec(ii)
                 max_len_vec(ii)=len_vec(ii);
             end
-            if len_vec(ii)<.66*max_len_vec(ii)
+            if len_vec(ii)<.75*max_len_vec(ii)
                 mt(ii)=0;
             else
                 mt(ii)=1;
