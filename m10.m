@@ -129,7 +129,6 @@ while 1
     end
     
     
-    
 else
     step(hVideoOut,out);
     end
