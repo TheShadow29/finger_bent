@@ -98,8 +98,37 @@ while 1
         mt=zeros(1,5);
     end
     
+    pts = zeros(2,6);
+    pts(1:2,1)=[cx,cy];
+    [m n]=size(final);
+    ind = 2;
+    flag =0;
+    imshow(final);
+    for idx=1:c1.NumObjects
+        gr = false(size(wb));
+        gr(c1.PixelIdxList{idx})= true;
+        for i=1:m-1
+            for j=1:n-1
+                if gr(i,j)==1
+                    pts(1:2,ind)=[i j];
+                    viscircles([j i],2);
+                    ind=ind+1;
+                    flag=1;
+                    break
+                end
+            end
+            if flag==1
+                flag=0;
+                break
+            end
+        end
+    end
+    viscircles([cx cy],10);
+    for ii=2:c1.NumObjects+1
+        line([cx,pts(2,ii)],[cy,pts(1,ii)]);
+    end
     
-    step(hVideoOut,final);
+    
     
 else
     step(hVideoOut,out);

@@ -29,6 +29,7 @@ while 1
     cc=bwconncomp(wb);
     graindata=regionprops(cc);
     area1 = [graindata.Area];
+    step(hVideoIn,img);
     while cc.NumObjects>1
         max_area= max(area1)-1000;
         wb=xor(bwareaopen(wb,min_area),bwareaopen(wb,max_area));
@@ -41,10 +42,11 @@ while 1
     area1 = [graindata.Area];
     cent = [graindata.Centroid];
     out = wb;
+    stats=regionprops(out,'Centroid');
     if length(stats)
 
-    cx=stats.Centroid(1);
-    cy=stats.Centroid(2);
+    cx=cent(1);
+    cy=cent(2);
 
     %find the nearest countour point
     boundary=bwboundaries(out);
@@ -76,22 +78,34 @@ while 1
     final=out-final;
     
     final=bwareaopen(final,200);
-	final=imerode(final,strel('disk',10));
+	final=imerode(final,strel('disk',5));
     final=bwareaopen(final,400);
     
     [L,num]=bwlabel(final,8);
     final=imclearborder(final,8);
   
-    imshow(final);
+    
+    c1 = bwconncomp(final);
+    c1.NumObjects;
+    g1 = regionprops(c1);
+    are = [g1.Area];
+    are_sorted = sort(are);
+    mt = zeros(1,5);
+    if length(are_sorted)==5
+        mt = ones(1,5);
+    end
+    if isempty(are_sorted)
+        mt=zeros(1,5);
+    end
+    
+    
+    
+    step(hVideoOut,final);
     
 else
-    imshow(out)
-    
-            
-    
-    step(hVideoIn,img);
-    step(hVideoOut,wb);
-   
+    step(hVideoOut,out);
+    end
+                
 end
 release(hVideoOut);
 release(hVideoIn);
